@@ -113,7 +113,7 @@ const products: Product[] = [
     name: "Round Rose bag",
     description: "Medium Raffia fashion handbag",
     price: 6000,
-    image: "/image-3.svg",
+    image: "/Image-3.svg",
     status: "new",
     category: "Raffia",
   },
