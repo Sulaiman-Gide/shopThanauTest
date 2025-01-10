@@ -14,67 +14,59 @@ export default function HomeSecond() {
   return (
     <div id="about" className="bg-[#202020] pb-1 sm:pb-[80px] flex flex-col">
       {/*Video*/}
-      <ScrollReveal>
-        <div className="flex justify-center items-center relative min-h-[200px] sm:min-h-[250px] md:min-h-[350px] lg:min-h-[370px] xl:min-h-[500px]">
-          <motion.div
-            initial={{ opacity: 1, y: 0 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="border-x-[2px] border-t-[1.8px] border-b-[3px] border-[#AA805A] w-[90%] sm:w-[83%] md:[75%] xl:w-[1040px] h-[220px] sm:h-[350px] xl:h-[450px] absolute top-0 z-30"
-          >
-            <div className="w-full h-full relative bg-[#202020]">
-              {!isPlaying ? (
-                <>
-                  <Image
-                    src="/HomeSecond.svg"
-                    alt="Video thumbnail"
-                    fill={true}
-                    sizes="(max-width: 640px) 90vw, (max-width: 768px) 85vw, 1040px"
-                    style={{ objectFit: "cover" }}
-                    priority={true}
-                    quality={100}
-                    className="w-full"
-                  />
-                  <div className="w-full h-full absolute top-0 left-0 z-10 bg-[#20202066]" />
-                  <div className="w-full h-full absolute top-0 left-0 z-10 bg-transparent flex justify-center items-center">
-                    <motion.button
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={handlePlay}
-                      className="w-[60px] h-[60px] sm:w-[80px] sm:h-[80px] relative hover:opacity-70 transition-opacity duration-300"
-                      aria-label="Play video"
-                    >
-                      <Image
-                        src="/video-circle.svg"
-                        alt="Play button"
-                        fill={true}
-                        sizes="80px"
-                        style={{ objectFit: "contain" }}
-                        priority={true}
-                        quality={100}
-                      />
-                    </motion.button>
-                  </div>
-                </>
-              ) : (
-                <video
-                  className="w-full h-full object-cover"
-                  autoPlay
-                  controls
-                  playsInline
-                  onPause={() => setIsPlaying(false)}
-                >
-                  <source src={videoUrl} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              )}
-            </div>
-          </motion.div>
-
-          <div className="bg-white w-full h-32 sm:h-40 xl:h-56 absolute top-[-3px]"></div>
+      <div className="flex justify-center items-center relative min-h-[200px] sm:min-h-[250px] md:min-h-[350px] lg:min-h-[370px] xl:min-h-[500px]">
+        <div className="border-x-[2px] border-t-[1.8px] border-b-[3px] border-[#AA805A] w-[90%] sm:w-[83%] md:[75%] xl:w-[1040px] h-[220px] sm:h-[350px] xl:h-[450px] absolute top-0 z-30">
+          <div className="w-full h-full relative bg-[#202020]">
+            {!isPlaying ? (
+              <>
+                <Image
+                  src="/HomeSecond.svg"
+                  alt="Video thumbnail"
+                  fill={true}
+                  sizes="(max-width: 640px) 90vw, (max-width: 768px) 85vw, 1040px"
+                  style={{ objectFit: "cover" }}
+                  priority={true}
+                  quality={100}
+                  className="w-full"
+                />
+                <div className="w-full h-full absolute top-0 left-0 z-10 bg-[#20202066]" />
+                <div className="w-full h-full absolute top-0 left-0 z-10 bg-transparent flex justify-center items-center">
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={handlePlay}
+                    className="w-[60px] h-[60px] sm:w-[80px] sm:h-[80px] relative hover:opacity-70 transition-opacity duration-300"
+                    aria-label="Play video"
+                  >
+                    <Image
+                      src="/video-circle.svg"
+                      alt="Play button"
+                      fill={true}
+                      sizes="80px"
+                      style={{ objectFit: "contain" }}
+                      priority={true}
+                      quality={100}
+                    />
+                  </motion.button>
+                </div>
+              </>
+            ) : (
+              <video
+                className="w-full h-full object-cover"
+                autoPlay
+                controls
+                playsInline
+                onPause={() => setIsPlaying(false)}
+              >
+                <source src={videoUrl} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            )}
+          </div>
         </div>
-      </ScrollReveal>
+
+        <div className="bg-white w-full h-32 sm:h-40 xl:h-56 absolute top-[-3px]"></div>
+      </div>
 
       {/*About Text*/}
       <ScrollReveal>

@@ -1,5 +1,6 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 interface Category {
   id: number;
@@ -22,6 +23,7 @@ export default function ProductsTop({
     searchQuery: string
   ) => void;
 }) {
+  const searchParams = useSearchParams();
   const [activeCategory, setActiveCategory] = useState("All Catalog");
   const [showFilters, setShowFilters] = useState(false);
   const [showMobileSearch, setShowMobileSearch] = useState(false);
@@ -40,20 +42,34 @@ export default function ProductsTop({
     { id: 4, name: "Woodwork", status: "coming_soon" },
   ];
 
+  // Sync category from URL params on initial mount only
+  useEffect(() => {
+    const categoryParam = searchParams.get("category");
+    if (categoryParam) {
+      const decodedCategory = decodeURIComponent(categoryParam);
+      setActiveCategory(decodedCategory);
+      // Update filters with the new category
+      onFilterChange(decodedCategory, filters, searchQuery);
+    }
+  }, []); // Empty dependency array for initial mount only
+
   const handleCategoryClick = (category: Category) => {
     if (category.status === "active") {
       setActiveCategory(category.name);
+      // Pass current filters and search state
       onFilterChange(category.name, filters, searchQuery);
     }
   };
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
+    // Pass current category and filters state
     onFilterChange(activeCategory, filters, query);
   };
 
   const handleFilterApply = () => {
     setShowFilters(false);
+    // Pass current category and search state
     onFilterChange(activeCategory, filters, searchQuery);
   };
 
@@ -62,20 +78,20 @@ export default function ProductsTop({
       placeholder="Search for Catalog"
       value={searchQuery}
       onChange={(e) => handleSearch(e.target.value)}
-      className="h-full py-[19px] px-[18px] text-[#4E5075] bg-[#FAFAFA] font-ProximaNovaRegular text-[14px] font-thin outline-none tracking-wider"
+      className="h-full py-[19px] px-[18px] text-[#4E5075] bg-[#FAFAFA] dark:bg-[#FAFAFA] font-ProximaNovaRegular text-[14px] font-thin outline-none tracking-wider"
     />
   );
 
   return (
-    <div className="select-none mt-[75px] sm:mt-[120px] lg:mt-[135px] px-[22px] sm:px-[40px] xl:px-[148px] bg-white">
+    <div className="select-none mt-[75px] sm:mt-[120px] lg:mt-[135px] px-[22px] lg:px-[90px] xl:px-[100px] bg-white dark:bg-white">
       {/** Bigger Screen */}
-      <div className="hidden sm:flex flex-col lg:flex-row justify-center lg:justify-between items-center gap-[24px] lg:gap-[32px] animate-fade-in-up">
+      <div className="hidden sm:flex flex-col lg:flex-row justify-center lg:justify-between items-center gap-[24px] lg:gap-[0px] animate-fade-in-up">
         <div className="w-full h-[46px] flex justify-start items-center">
           {categories.map((category) => (
             <div
               key={category.id}
               onClick={() => handleCategoryClick(category)}
-              className={`h-full pt-[10px] pb-[-5px] sm:px-[32px] lg:px-[10px] xl:px-[32px] cursor-pointer 
+              className={`h-full pt-[10px] pb-[-5px] sm:px-[32px] lg:px-[10px] xl:px-[20px] cursor-pointer 
                 ${
                   activeCategory === category.name
                     ? "border-b-[1.5px] border-[#000000]"
@@ -99,7 +115,7 @@ export default function ProductsTop({
           ))}
         </div>
 
-        <div className="w-full h-[46px] flex justify-between lg:justify-end items-center gap-[24px]">
+        <div className="w-full h-[46px] flex justify-between lg:justify-end items-center gap-[18px]">
           {/* Filter Button */}
           <button
             onClick={() => setShowFilters(!showFilters)}

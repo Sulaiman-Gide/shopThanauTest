@@ -15,6 +15,9 @@ module.exports = {
         ProximaNovaRegular: ["ProximaNovaRegular", "sans-serif"],
         ProximaNovaBold: ["ProximaNovaBold", "sans-serif"],
       },
+      screens: {
+        xs: "380px",
+      },
       animation: {
         "fade-in": "fadeIn 0.5s ease-in-out",
         "slide-up": "slideUp 0.6s ease-out",
@@ -22,6 +25,7 @@ module.exports = {
         "slide-down": "slideDown 0.3s ease-out",
         "slide-in-right": "slideInRight 0.4s ease-out",
         "fade-in-up": "fade-in-up 0.7s ease-out forwards",
+        "spin-slow": "spin 3s linear infinite",
       },
       keyframes: {
         fadeIn: {

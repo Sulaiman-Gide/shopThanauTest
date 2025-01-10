@@ -5,6 +5,7 @@ import { motion, AnimatePresence, PanInfo } from "framer-motion";
 import { FaInstagram, FaTiktok, FaWhatsapp } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { usePathname, useRouter } from "next/navigation";
+import { useCartStore } from "@/app/store/cartStore";
 
 interface NavItem {
   id: number;
@@ -51,6 +52,7 @@ export default function NavBar() {
   const router = useRouter();
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const cartCount = useCartStore((state) => state.getCartCount());
 
   useEffect(() => {
     // Check if we should scroll to about section after navigation
@@ -117,7 +119,7 @@ export default function NavBar() {
   };
 
   return (
-    <nav className="w-full fixed top-[-2px] z-50 select-none sm:py-[14px] pl-[22px] sm:px-[40px] lg:px-[148px] bg-white pb-1 sm:pb-1">
+    <nav className="w-full fixed top-[-2px] z-50 select-none sm:py-[14px] pl-[22px] sm:px-[40px] lg:px-[90px] xl:px-[100px] bg-white pb-1 sm:pb-1">
       <div className="h-[47px] sm:h-[44px] lg:h-[45.5px] flex justify-between items-center">
         <Link href="/">
           <div className="w-[80px] sm:w-[120.17px] h-[24.95px] sm:h-[28px] relative mb-[-6px] sm:mb-[-20px] lg:mb-0">
@@ -162,7 +164,7 @@ export default function NavBar() {
                       </div>
                       <div className="bg-[#E21717] px-[7px] rounded-full absolute top-[-6px] right-[-12px] z-30">
                         <h1 className="font-nats text-[12px] text-white/80 font-medium">
-                          9
+                          {cartCount}
                         </h1>
                       </div>
                     </div>
@@ -173,6 +175,16 @@ export default function NavBar() {
               )}
             </Link>
           ))}
+          <button className="flex items-center justify-center bg-white w-[13%]">
+            <div className="w-[24px] h-[24px] relative">
+              <Image
+                src="/hamBurgerMenu.svg"
+                alt="menu"
+                fill
+                style={{ objectFit: "contain" }}
+              />
+            </div>
+          </button>
         </div>
 
         {/* Mobile Navigation */}
@@ -197,7 +209,7 @@ export default function NavBar() {
               </div>
               <div className="hidden sm:block bg-[#E21717] px-[7px] rounded-full absolute top-[-6px] right-[-12px] z-30">
                 <h1 className="font-nats text-[12px] text-white/80 font-medium">
-                  9
+                  {cartCount}
                 </h1>
               </div>
             </div>
