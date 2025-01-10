@@ -96,7 +96,7 @@ export default function SimilarProducts({ product }: DetailsTopProps) {
               </div>
             </div>
 
-            <div className="w-full flex flex-col gap-[5px] sm:gap-[10px] py-[8px] sm:py-[16px] px-[10px] sm:px-[13px] bg-[#FAFAFA]">
+            <div className="w-full flex flex-col gap-[3px] py-[8px] sm:py-[16px] px-[10px] sm:px-[13px] bg-[#FAFAFA]">
               <h1 className="text-[#202020] text-[14px] sm:text-[16px] font-ProximaNovaBold font-medium line-clamp-1">
                 {similarProduct.name}
               </h1>

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
 interface Category {
@@ -15,6 +15,22 @@ interface FilterOptions {
 }
 
 export default function ProductsTop({
+  onFilterChange,
+}: {
+  onFilterChange: (
+    category: string,
+    filters: FilterOptions,
+    searchQuery: string
+  ) => void;
+}) {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ProductsTopContent onFilterChange={onFilterChange} />
+    </Suspense>
+  );
+}
+
+function ProductsTopContent({
   onFilterChange,
 }: {
   onFilterChange: (
@@ -42,22 +58,26 @@ export default function ProductsTop({
     { id: 4, name: "Woodwork", status: "coming_soon" },
   ];
 
-  // Sync category from URL params on initial mount only
+  // Split into two effects - one for initial URL sync and one for category changes
   useEffect(() => {
+    if (!searchParams) return;
+
     const categoryParam = searchParams.get("category");
     if (categoryParam) {
       const decodedCategory = decodeURIComponent(categoryParam);
       setActiveCategory(decodedCategory);
-      // Update filters with the new category
-      onFilterChange(decodedCategory, filters, searchQuery);
     }
-  }, []); // Empty dependency array for initial mount only
+  }, [searchParams]); // Only depend on searchParams for URL sync
+
+  // New effect to handle category changes
+  useEffect(() => {
+    onFilterChange(activeCategory, filters, searchQuery);
+  }, [activeCategory, filters, searchQuery, onFilterChange]);
 
   const handleCategoryClick = (category: Category) => {
     if (category.status === "active") {
       setActiveCategory(category.name);
-      // Pass current filters and search state
-      onFilterChange(category.name, filters, searchQuery);
+      // Remove direct onFilterChange call here as it will be handled by the effect
     }
   };
 
