@@ -53,6 +53,11 @@ export default function NavBar() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const cartCount = useCartStore((state) => state.getCartCount());
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     // Check if we should scroll to about section after navigation
@@ -118,6 +123,8 @@ export default function NavBar() {
     }
   };
 
+  const cartCountDisplay = mounted ? cartCount : 0;
+
   return (
     <nav className="w-full fixed top-[-2px] z-50 select-none sm:py-[14px] pl-[22px] sm:px-[40px] lg:px-[90px] xl:px-[100px] bg-white pb-1 sm:pb-1">
       <div className="h-[47px] sm:h-[44px] lg:h-[45.5px] flex justify-between items-center">
@@ -164,7 +171,7 @@ export default function NavBar() {
                       </div>
                       <div className="bg-[#E21717] px-[7px] rounded-full absolute top-[-6px] right-[-12px] z-30">
                         <h1 className="font-nats text-[12px] text-white/80 font-medium">
-                          {cartCount}
+                          {cartCountDisplay}
                         </h1>
                       </div>
                     </div>
@@ -209,7 +216,7 @@ export default function NavBar() {
               </div>
               <div className="hidden sm:block bg-[#E21717] px-[7px] rounded-full absolute top-[-6px] right-[-12px] z-30">
                 <h1 className="font-nats text-[12px] text-white/80 font-medium">
-                  {cartCount}
+                  {cartCountDisplay}
                 </h1>
               </div>
             </div>
