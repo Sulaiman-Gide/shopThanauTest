@@ -26,11 +26,11 @@ export default function HomeTop() {
         />
       </motion.div>
 
-      <div className="block w-[28px] sm:w-[33px] h-[55px] border-[1.7px] border-[#141414e7] rounded-[40px] py-[10px] px-[6px] mx-auto relative">
+      <div className="block w-[20px] sm:w-[28px] h-[40px] sm:h-[55px] border-[1.5px] sm:border-[1.7px] border-[#141414e7] rounded-[40px] py-[8px] sm:py-[10px] px-[4px] sm:px-[6px] mx-auto relative">
         <motion.div
           initial={{ opacity: 1, y: 0 }}
           animate={{
-            y: [0, 0, 28, 28],
+            y: [0, 0, 20, 20],
             opacity: [1, 1, 1, 0],
           }}
           transition={{
@@ -40,7 +40,7 @@ export default function HomeTop() {
             times: [0, 0.4, 0.75, 1],
             ease: [0.5, 0.87, 0.82, 1],
           }}
-          className="w-[5px] h-[5px] bg-black rounded-full mx-auto"
+          className="w-[4px] sm:w-[5px] h-[4px] sm:h-[5px] bg-black rounded-full mx-auto"
         ></motion.div>
       </div>
     </div>

@@ -476,6 +476,13 @@ const products: Product[] = [
         comment: "Beautiful craftsmanship and very durable!",
         date: "2024-01-19",
       },
+      {
+        id: 2,
+        user: "Thanau Test.",
+        rating: 1,
+        comment: "Beautiful craftsmanship and very durable!",
+        date: "2024-01-19",
+      },
     ],
   },
 ];
