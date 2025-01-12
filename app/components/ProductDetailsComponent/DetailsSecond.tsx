@@ -228,7 +228,7 @@ export default function DetailsSecond({ product }: DetailsTopProps) {
                 className="w-full"
               />
             </div>
-            <p className="text-[#4E5075] text-[16px] lg:text-[16.5px] leading-[18px] font-ProximaNovaRegular font-light -mt-0.5 mb-1 sm:mb-2 lg:mb-0 cursor-pointer">
+            <p className="text-[#4E5075] text-[16px] lg:text-[16.5px] lg:leading-[18px] font-ProximaNovaRegular font-light -mt-0.5 mb-1 sm:mb-2 lg:mb-0 cursor-pointer">
               Get this in Lagos within{" "}
               <span className="font-ProximaNovaBold">48 hours</span> and outside
               Lagos is 3 - 5 days after order is placed.

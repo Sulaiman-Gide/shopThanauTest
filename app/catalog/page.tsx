@@ -424,7 +424,7 @@ const products: Product[] = [
     status: "new",
     category: "Raffia",
     variants: {
-      colors: ["Natural", "Brown", "Black"],
+      colors: ["Natural", "Black", "Black"],
       sizes: ["Small", "Medium", "Large"],
     },
     stock: 10,

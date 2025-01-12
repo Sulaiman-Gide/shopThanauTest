@@ -29,12 +29,12 @@ export default function SimilarProducts({ product }: DetailsTopProps) {
   return (
     <div className="bg-white flex flex-col items-start justify-start gap-[20px] sm:gap-[30px] lg:gap-[40px] w-full overflow-hidden py-[35px] sm:py-[40px] lg:py-[60px] px-[16px] sm:px-[40px] lg:px-[90px] xl:px-[90px]">
       <div className="flex justify-between items-center w-full">
-        <h1 className="text-[16px] sm:text-[20px] text-[#202020] font-ProximaNovaRegular font-[600] leading-5">
+        <h1 className="text-[16px] sm:text-[20px] text-[#202020] font-ProximaNovaRegular font-light leading-5">
           Similar {product.category} Catalog
         </h1>
         <Link
           href={`/catalog?category=${encodeURIComponent(product.category)}`}
-          className="flex justify-center items-center gap-[8px] sm:gap-[13px] text-[#000000cc] text-[13px] sm:text-[14px] lg:text-[16.5px] leading-5 lg:leading-[20px] font-ProximaNovaRegular font-normal whitespace-nowrap"
+          className="flex justify-center items-center gap-[8px] sm:gap-[13px] text-[#000000cc] text-[15px] lg:text-[17px] leading-5 lg:leading-[20px] font-ProximaNovaRegular font-normal whitespace-nowrap"
         >
           View category
           <div className="w-[20px] h-[20px] sm:w-[24px] sm:h-[24px] relative">
