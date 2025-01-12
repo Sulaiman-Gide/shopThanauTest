@@ -81,7 +81,7 @@ export default function DetailsSecond({ product }: DetailsTopProps) {
     <div className="relative">
       <div className="sm:min-h-[400px] xl:min-h-[470px] flex justify-stretch items-center flex-col md:flex-row gap-[5px] sm:gap-[25px] lg:gap-[28px] mt-[20px] mb-[25px] sm:mt-[30px] sm:mb-[40px] lg:mt-[50px] lg:mb-[60px] px-[22px] sm:px-[40px] lg:px-[90px]">
         {/* Product Image */}
-        <div className="w-full md:w-[52%] h-[230px] md:h-[400px] xl:h-[470px] flex">
+        <div className="w-full md:w-[52%] h-[350px] sm:h-[400px] md:h-[400px] xl:h-[470px] flex">
           <div className="w-[100px] h-full relative hidden lg:flex">
             <Image
               src="/thanau.svg"
@@ -100,10 +100,9 @@ export default function DetailsSecond({ product }: DetailsTopProps) {
               alt={product.name}
               fill={true}
               sizes="(max-width: 640px) 90vw, (max-width: 768px) 85vw, 1040px"
-              style={{ objectFit: "cover" }}
               priority={true}
               quality={100}
-              className="w-full"
+              className="w-full h-full object-cover"
             />
           </div>
         </div>
@@ -111,7 +110,7 @@ export default function DetailsSecond({ product }: DetailsTopProps) {
         {/* Product Description */}
         <div className="w-full md:w-[48%] sm:min-h-[400px] xl:min-h-[450px] flex flex-col gap-[10px] md:gap-[10px] lg:gap-[18px] pt-2 sm:pt-1">
           {/* Product Title */}
-          <div className="flex flex-col gap-[5px] lg:gap-[10px]">
+          <div className="flex flex-col gap-[5px] lg:gap-[10px] mt-1 sm:mt-0">
             <h2 className="text-[#4E5075] text-[15px] lg:text-[15.5px] leading-[18px] font-ProximaNovaRegular font-light">
               {product.category}
             </h2>
