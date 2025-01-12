@@ -7,7 +7,8 @@ import { FaExclamationTriangle } from "react-icons/fa";
 
 export default function CartTop() {
   const router = useRouter();
-  const cartCount = useCartStore((state) => state.getCartCount());
+  const items = useCartStore((state) => state.items);
+  const cartCount = items.length;
   const clearCart = useCartStore((state) => state.clearCart);
   const [mounted, setMounted] = useState(false);
   const cartCountDisplay = mounted ? cartCount : 0;
@@ -18,7 +19,7 @@ export default function CartTop() {
   }, []);
 
   const handleClearCart = () => {
-    if (cartCount > 0) {
+    if (items.length > 0) {
       setShowConfirmDialog(true);
     }
   };
@@ -40,7 +41,7 @@ export default function CartTop() {
             <h2 className="tracking-wide text-[15px] xl:text-[25px] text-[#000000] ProximaNovaRegular font-[400] transition-colors duration-300">
               Cart
             </h2>
-            <p className="text-[17px] text-[#4E5075] hover:text-[#4E507580]">
+            <p className="text-[17px] text-[#4E5075] hover:text-[#4E5075]">
               ({cartCountDisplay} {cartCountDisplay === 1 ? "item" : "items"})
             </p>
           </div>
@@ -50,7 +51,7 @@ export default function CartTop() {
             className={`text-[17px] ${
               cartCount > 0 ? "text-[#4E5075]" : "text-[#4E507590]"
             } cursor-pointer transition-colors duration-200 ${
-              cartCount === 0 ? "cursor-not-allowed opacity-90" : ""
+              cartCount === 0 ? "cursor-not-allowed" : ""
             }`}
             disabled={cartCount === 0}
           >

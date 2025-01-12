@@ -41,8 +41,8 @@ export default function DetailsTop({ product }: DetailsTopProps) {
           </span>
         </span>
 
-        <span className="flex justify-center items-center gap-1 cursor-pointer sm:mb-[-3px]">
-          <span className="tracking-wide text-[15px] xl:text-[16px] sm:text-[14px] text-[#4E5075] font-ProximaNovaRegular font-[800] sm:font-[400]">
+        <span className="flex justify-center items-center gap-1 cursor-pointer -mb-0.5 sm:mb-[-3px]">
+          <span className="tracking-wide text-[16px] xl:text-[16px] sm:text-[14px] text-[#4E5075] font-ProximaNovaRegular font-light">
             {product.name}
           </span>
         </span>

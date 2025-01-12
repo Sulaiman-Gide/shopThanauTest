@@ -6,6 +6,7 @@ import { useCartStore } from "@/app/store/cartStore";
 import { useRouter } from "next/navigation";
 import { FaWhatsapp } from "react-icons/fa6";
 import { FaCheckCircle } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface DetailsTopProps {
   product: Product;
@@ -23,6 +24,7 @@ export default function DetailsSecond({ product }: DetailsTopProps) {
   const [quantity, setQuantity] = useState<number>(1);
   const [showNotification, setShowNotification] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   let timeoutId: NodeJS.Timeout;
 
   const handleWhatsAppClick = () => {
@@ -30,12 +32,20 @@ export default function DetailsSecond({ product }: DetailsTopProps) {
   };
 
   const handleAddToCart = () => {
-    addItem({
+    const result = addItem({
       product,
       quantity,
       selectedColor,
       selectedSize,
     });
+
+    if (!result.success) {
+      setError(result.message || "Failed to add item to cart");
+      setTimeout(() => setError(null), 3000);
+      return;
+    }
+
+    setError(null);
     setShowNotification(true);
     if (timeoutId) clearTimeout(timeoutId);
     timeoutId = setTimeout(() => {
@@ -105,7 +115,7 @@ export default function DetailsSecond({ product }: DetailsTopProps) {
             <h2 className="text-[#4E5075] text-[15px] lg:text-[15.5px] leading-[18px] font-ProximaNovaRegular font-light">
               {product.category}
             </h2>
-            <h1 className="text-[#202020] text-[16px] lg:text-[18px] leading-5 lg:leading-[15px] font-ProximaNovaBold font-normal">
+            <h1 className="text-[#202020] text-[16px] lg:text-[18px] leading-5 lg:leading-[16px] font-ProximaNovaRegular font-light">
               {product.name}
             </h1>
           </div>
@@ -119,7 +129,7 @@ export default function DetailsSecond({ product }: DetailsTopProps) {
             </h2>
           </div>
           {/* Product Description */}
-          <p className="text-[#4E5075] text-[16px] lg:text-[17px] leading-[25px] font-ProximaNovaRegular font-light -mt-1 mb-1 sm:mb-2 lg:mb-0">
+          <p className="text-[#4E5075] text-[16px] lg:text-[17px] font-ProximaNovaRegular font-light -mt-1 mb-1 sm:mb-2 lg:mb-0">
             {product.description}
           </p>
           <div className="flex flex-col gap-[17px] w-fit">
@@ -133,7 +143,7 @@ export default function DetailsSecond({ product }: DetailsTopProps) {
                   <button
                     key={size}
                     onClick={() => setSelectedSize(size)}
-                    className={`px-3 py-1 border text-[#000] text-[13px] md:text-[16px] lg:text-[16px] leading-[20px] font-ProximaNovaRegular font-light ${
+                    className={`px-3 py-1 border text-[#4E5075] text-[15px] lg:text-[17px] font-ProximaNovaRegular font-light ${
                       selectedSize === size
                         ? "border-blue-900"
                         : "border-gray-300"
@@ -206,7 +216,7 @@ export default function DetailsSecond({ product }: DetailsTopProps) {
             </div>
           </div>
           {/*Delivery */}
-          <div className="flex justify-between items-start gap-[12px] sm:gap-[16px] mt-3 sm:mt-1.5">
+          <div className="select-none flex justify-between items-start gap-[12px] sm:gap-[16px] mt-3 sm:mt-1.5">
             <div className="w-[29px] h-[23px] lg:w-[30px] lg:h-[28px] relative mt-[-2px]">
               <Image
                 src="/bus.svg"
@@ -246,27 +256,76 @@ export default function DetailsSecond({ product }: DetailsTopProps) {
                 </div>
                 <span className="relative z-10">Add to Cart</span>
               </button>
-              {showNotification && (
-                <div
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                  className="absolute top-full left-0 mt-2 bg-[#f5efe1] text-[#4a4a4a] p-3 shadow-lg z-50 animate-slideDown flex justify-between items-center gap-3 hover:shadow-lg transition-shadow duration-200 cursor-pointer"
-                >
-                  <div className="flex justify-start items-center gap-2">
-                    <FaCheckCircle className="text-[#847550] text-base flex-shrink-0 mt-0.5" />
-
-                    <p className="font-ProximaNovaRegular text-[13px] text-[#202020] whitespace-nowrap">
-                      Product added to cart successfully!
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => router.push("/cart")}
-                    className="text-[#847550] hover:underline text-[13px] text-left font-ProximaNovaRegular font-semibold whitespace-nowrap"
+              <AnimatePresence>
+                {error && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="absolute top-full left-0 right-0 mt-2 px-4"
                   >
-                    View Cart
-                  </button>
-                </div>
-              )}
+                    <div className="bg-red-50 border-l-4 border-red-500 p-4 flex items-center justify-between">
+                      <div className="flex items-center">
+                        <svg
+                          className="h-5 w-5 text-red-500 mr-2"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                        <p className="text-red-700 text-sm font-ProximaNovaRegular">
+                          {error}
+                        </p>
+                      </div>
+                      <button
+                        onClick={() => setError(null)}
+                        className="text-red-700 hover:text-red-900 transition-colors"
+                      >
+                        <svg
+                          className="h-4 w-4"
+                          fill="none"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    </div>
+                  </motion.div>
+                )}
+
+                {showNotification && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                    className="absolute top-full left-0 mt-2 bg-[#f5efe1] text-[#4a4a4a] p-3 shadow-lg z-50 animate-slideDown flex justify-between items-center gap-3 border border-[#e6d5b0]"
+                  >
+                    <div className="flex justify-start items-center gap-2">
+                      <FaCheckCircle className="text-[#847550] text-base flex-shrink-0 mt-0.5" />
+
+                      <p className="font-ProximaNovaRegular text-[13px] text-[#202020] whitespace-nowrap">
+                        Product added to cart successfully!
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => router.push("/cart")}
+                      className="text-[#847550] hover:underline text-[13px] text-left font-ProximaNovaRegular font-semibold whitespace-nowrap"
+                    >
+                      View Cart
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
             <button
               onClick={handleBuyNow}
