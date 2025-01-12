@@ -3,6 +3,7 @@ import React from "react";
 import Navbar from "../components/Navbar-2";
 import CartSecond from "../components/CartPageComponents/CartSecond";
 import CartTop from "../components/CartPageComponents/CartTop";
+import Footer from "../components/Footer";
 
 export default function Cart() {
   return (
@@ -10,6 +11,7 @@ export default function Cart() {
       <Navbar />
       <CartTop />
       <CartSecond />
+      <Footer />
     </main>
   );
 }

@@ -198,7 +198,8 @@ export default function DetailsSecond({ product }: DetailsTopProps) {
               <div className="flex items-center gap-[35px] sm:gap-[40px] py-[2px] sm:py-[3px] px-[12px] border border-[#000000]">
                 <button
                   onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                  className="select-none text-[18px] sm:text-[20px]"
+                  className="select-none text-[18px] sm:text-[20px] disabled:opacity-50 disabled:cursor-not-allowed"
+                  disabled={quantity <= 1}
                 >
                   -
                 </button>
@@ -207,7 +208,8 @@ export default function DetailsSecond({ product }: DetailsTopProps) {
                   onClick={() =>
                     setQuantity((q) => Math.min(product.stock, q + 1))
                   }
-                  className="select-none text-[18px] sm:text-[20px]"
+                  className="select-none text-[18px] sm:text-[20px] disabled:opacity-50 disabled:cursor-not-allowed"
+                  disabled={quantity >= product.stock}
                 >
                   +
                 </button>
@@ -239,7 +241,7 @@ export default function DetailsSecond({ product }: DetailsTopProps) {
             <div className="relative w-[50%]">
               <button
                 onClick={handleAddToCart}
-                className="w-full py-[6px] lg:py-[9px] border border-[#202020e3] flex justify-center items-center gap-[8px] text-[#202020] text-[15px] lg:text-[17px] leading-[25px] font-ProximaNovaRegular font-light relative overflow-hidden group bg-transparent transition-all duration-300 ease-in-out hover:shadow-lg"
+                className="select-none w-full py-[6px] lg:py-[9px] border border-[#202020e3] flex justify-center items-center gap-[8px] text-[#202020] text-[15px] lg:text-[17px] leading-[25px] font-ProximaNovaRegular font-light relative overflow-hidden group bg-transparent transition-all duration-300 ease-in-out hover:shadow-lg"
               >
                 <div className="w-[16px] h-[16px] sm:w-[18px] sm:h-[18px] lg:w-[22px] lg:h-[22px] relative mt-[-2px] z-10 transition-all duration-300">
                   <Image
@@ -328,7 +330,7 @@ export default function DetailsSecond({ product }: DetailsTopProps) {
             </div>
             <button
               onClick={handleBuyNow}
-              className="w-[50%] py-[6px] lg:py-[9px] bg-[#202020] flex justify-center items-center text-white text-[15px] lg:text-[17px] leading-[25px] font-ProximaNovaRegular font-light relative overflow-hidden group transition-all duration-300 ease-in-out hover:shadow-xl"
+              className="select-none w-[50%] py-[6px] lg:py-[9px] bg-[#202020] flex justify-center items-center text-white text-[15px] lg:text-[17px] leading-[25px] font-ProximaNovaRegular font-light relative overflow-hidden group transition-all duration-300 ease-in-out hover:shadow-xl"
             >
               <span className="relative z-10">Buy now</span>
             </button>
@@ -336,7 +338,7 @@ export default function DetailsSecond({ product }: DetailsTopProps) {
           {/* Product Share Link */}
           <div
             onClick={handleWhatsAppClick}
-            className="w-fit flex items-center gap-2 sm:gap-3 mt-2 sm:mt-0 text-[#4E5075] hover:text-[#202020] transition-colors duration-300 relative group cursor-pointer hover:scale-[1.02] active:scale-[0.98]"
+            className="select-none w-fit flex items-center gap-2 sm:gap-3 mt-2 sm:mt-0 text-[#4E5075] hover:text-[#202020] transition-colors duration-300 relative group cursor-pointer hover:scale-[1.02] active:scale-[0.98]"
           >
             <FaWhatsapp className="w-[19px] h-[19px] sm:w-[21px] sm:h-[21px] text-[#5AAA61]" />
             <p className="text-[#319639] text-[16px] lg:text-[16px] font-ProximaNovaRegular font-medium -mb-0.5">
