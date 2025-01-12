@@ -214,7 +214,7 @@ export default function NavBar() {
                   className="b"
                 />
               </div>
-              <div className="hidden sm:block bg-[#E21717] px-[7px] rounded-full absolute top-[-6px] right-[-12px] z-30">
+              <div className="block bg-[#E21717] px-[7px] rounded-full absolute top-[-6px] right-[-12px] z-30">
                 <h1 className="font-nats text-[12px] text-white/80 font-medium">
                   {cartCountDisplay}
                 </h1>

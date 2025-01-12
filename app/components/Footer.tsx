@@ -28,19 +28,19 @@ export default function Footer() {
           <div className="">
             <Link
               href="/catalog"
-              className="block font-ProximaNovaRegular text-[15px] sm:text-[11.5px] lg:text-[17px] text-[#ffffffb7] font-[300px] leading-8 tracking-wide lg:mb-[5px] hover:opacity-70"
+              className="block font-ProximaNovaRegular text-[16px] sm:text-[11.5px] lg:text-[17px] text-[#ffffffb7] font-[300px] leading-8 tracking-wide lg:mb-[5px] hover:opacity-70"
             >
               Raffia
             </Link>
             <Link
               href="/catalog"
-              className="block font-ProximaNovaRegular text-[15px] sm:text-[11.5px] lg:text-[17px] text-[#ffffffb7] font-[300px] leading-8 tracking-wide lg:mb-[5px] hover:opacity-70"
+              className="block font-ProximaNovaRegular text-[16px] sm:text-[11.5px] lg:text-[17px] text-[#ffffffb7] font-[300px] leading-8 tracking-wide lg:mb-[5px] hover:opacity-70"
             >
               Wood-work
             </Link>
             <Link
               href="/catalog"
-              className="block font-ProximaNovaRegular text-[15px] sm:text-[11.5px] lg:text-[17px] text-[#ffffffb7] font-[300px] leading-8 tracking-wide lg:mb-[5px] hover:opacity-70"
+              className="block font-ProximaNovaRegular text-[16px] sm:text-[11.5px] lg:text-[17px] text-[#ffffffb7] font-[300px] leading-8 tracking-wide lg:mb-[5px] hover:opacity-70"
             >
               Adire
             </Link>
@@ -54,13 +54,13 @@ export default function Footer() {
           <div className="">
             <Link
               href="#"
-              className="block font-ProximaNovaRegular text-[15px] sm:text-[11.5px] lg:text-[17px] text-[#ffffffb7] font-[300px] leading-8 tracking-wide lg:mb-[5px] hover:opacity-70"
+              className="block font-ProximaNovaRegular text-[16px] sm:text-[11.5px] lg:text-[17px] text-[#ffffffb7] font-[300px] leading-8 tracking-wide lg:mb-[5px] hover:opacity-70"
             >
               About Us
             </Link>
             <Link
               href="/catalog"
-              className="block font-ProximaNovaRegular text-[15px] sm:text-[11.5px] lg:text-[17px] text-[#ffffffb7] font-[300px] leading-8 tracking-wide lg:mb-[5px] hover:opacity-70"
+              className="block font-ProximaNovaRegular text-[16px] sm:text-[11.5px] lg:text-[17px] text-[#ffffffb7] font-[300px] leading-8 tracking-wide lg:mb-[5px] hover:opacity-70"
             >
               Catalog
             </Link>
@@ -75,7 +75,7 @@ export default function Footer() {
             <Link
               href="https://www.instagram.com/shop_thanau/"
               target="_blank"
-              className="font-ProximaNovaRegular text-[15px] sm:text-[11.5px] lg:text-[17px] text-[#ffffffb7] font-[300px] leading-8 tracking-wide lg:mb-[5px] hover:opacity-70 flex flex-row items-center gap-[14px]"
+              className="font-ProximaNovaRegular text-[16px] sm:text-[11.5px] lg:text-[17px] text-[#ffffffb7] font-[300px] leading-8 tracking-wide lg:mb-[5px] hover:opacity-70 flex flex-row items-center gap-[14px]"
             >
               <FaInstagram className="w-[14px] sm:w-[9.27px] lg:w-[19px] h-[14px] sm:h-[9.27px] lg:h-[19px]" />
               shop_thanau
@@ -83,7 +83,7 @@ export default function Footer() {
             <Link
               href="https://x.com/shop_thanau?s=21"
               target="_blank"
-              className="font-ProximaNovaRegular text-[15px] sm:text-[11.5px] lg:text-[17px] text-[#ffffffb7] font-[300px] leading-8 tracking-wide lg:mb-[5px] hover:opacity-70 flex flex-row items-center gap-[14px]"
+              className="font-ProximaNovaRegular text-[16px] sm:text-[11.5px] lg:text-[17px] text-[#ffffffb7] font-[300px] leading-8 tracking-wide lg:mb-[5px] hover:opacity-70 flex flex-row items-center gap-[14px]"
             >
               <FaXTwitter className="w-[14px] sm:w-[9.27px] lg:w-[19px] h-[14px] sm:h-[9.27px] lg:h-[19px]" />
               shop_thanau
@@ -91,7 +91,7 @@ export default function Footer() {
             <Link
               href="https://www.tiktok.com/@shop_thanau?_t=8sevzHoGTcU&_r=1"
               target="_blank"
-              className="font-ProximaNovaRegular text-[15px] sm:text-[11.5px] lg:text-[17px] text-[#ffffffb7] font-[300px] leading-8 tracking-wide lg:mb-[5px] hover:opacity-70 flex flex-row items-center gap-[14px]"
+              className="font-ProximaNovaRegular text-[16px] sm:text-[11.5px] lg:text-[17px] text-[#ffffffb7] font-[300px] leading-8 tracking-wide lg:mb-[5px] hover:opacity-70 flex flex-row items-center gap-[14px]"
             >
               <FaTiktok className="w-[14px] sm:w-[9.27px] lg:w-[19px] h-[14px] sm:h-[9.27px] lg:h-[19px]" />
               shop_thanau
@@ -99,7 +99,7 @@ export default function Footer() {
             <Link
               href="https://wa.me/message/VOYUC4BFTX5YL1"
               target="_blank"
-              className="font-ProximaNovaRegular text-[15px] sm:text-[11.5px] lg:text-[17px] text-[#ffffffb7] font-[300px] leading-8 tracking-wide lg:mb-[5px] hover:opacity-70 flex flex-row items-center gap-[14px]"
+              className="font-ProximaNovaRegular text-[16px] sm:text-[11.5px] lg:text-[17px] text-[#ffffffb7] font-[300px] leading-8 tracking-wide lg:mb-[5px] hover:opacity-70 flex flex-row items-center gap-[14px]"
             >
               <FaWhatsapp className="w-[14px] sm:w-[9.27px] lg:w-[19px] h-[14px] sm:h-[9.27px] lg:h-[19px]" />
               08101075795

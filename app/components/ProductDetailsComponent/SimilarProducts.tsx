@@ -108,18 +108,18 @@ export default function SimilarProducts({ product }: DetailsTopProps) {
               </div>
 
               <div className="flex flex-col gap-[3px] sm:gap-1.5 mt-3">
-                <h1 className="text-[#202020] dark:text-[#202020] text-[12px] sm:text-lg font-ProximaNovaBold">
+                <h1 className="text-[#202020] dark:text-[#202020] text-[16px] sm:text-lg font-ProximaNovaBold">
                   {similarProduct.name}
                 </h1>
-                <p className="text-[#4E5075] dark:text-[#4E5075] text-[10px] sm:text-[15.5px] font-ProximaNovaRegular block truncate">
+                <p className="text-[#4E5075] dark:text-[#4E5075] text-[14px] sm:text-[15.5px] font-ProximaNovaRegular block truncate">
                   {similarProduct.slug}
                 </p>
                 {product.status === "discount" ? (
                   <div className="flex items-center gap-2 sm:gap-3">
-                    <span className="text-[#202020] dark:text-[#202020] text-[12px] sm:text-lg font-ProximaNovaBold">
+                    <span className="text-[#202020] dark:text-[#202020] text-[14px] sm:text-lg font-ProximaNovaBold">
                       ₦{similarProduct.price.toLocaleString()}
                     </span>
-                    <span className="text-[#202020] dark:text-[#202020] text-sm sm:text-[15.5px] font-ProximaNovaRegular line-through">
+                    <span className="text-[#202020] dark:text-[#202020] text-[14px] sm:text-[15.5px] font-ProximaNovaRegular line-through">
                       ₦
                       {Math.round(
                         product.price /
@@ -128,7 +128,7 @@ export default function SimilarProducts({ product }: DetailsTopProps) {
                     </span>
                   </div>
                 ) : (
-                  <span className="text-[#202020] dark:text-[#202020] text-[12px] sm:text-lg font-ProximaNovaBold">
+                  <span className="text-[#202020] dark:text-[#202020] text-[14px] sm:text-lg font-ProximaNovaBold">
                     ₦{similarProduct.price.toLocaleString()}
                   </span>
                 )}
