@@ -114,17 +114,17 @@ export default function Description({ product }: DetailsTopProps) {
         </div>
       </div>
       <div className="w-full md:w-2/4 flex gap-[10px] sm:gap-[13px] flex-col">
-        <h1 className="text-[#FFF] text-[17px] lg:text-[20px] leading-5 lg:leading-[20px] font-ProximaNovaRegular font-medium">
+        <h1 className="text-[#FFF] text-[18px] lg:text-[20px] leading-5 lg:leading-[20px] font-ProximaNovaRegular font-medium">
           About {getProductType(product.name)}
         </h1>
-        <p className="text-[#ffffffb7] text-[16px] lg:text-[17px] leading-[30.6px] font-ProximaNovaRegular font-light">
+        <p className="text-[#ffffffb7] text-[17px] lg:text-[17px] leading-[30.6px] font-ProximaNovaRegular font-light">
           {product.longDescription.about}
         </p>
         <div className="flex flex-col gap-[6px]">
-          <h2 className="text-[#FFF] text-[16px] lg:text-[19px] leading-5 lg:leading-[30px] font-ProximaNovaRegular font-medium">
+          <h2 className="text-[#FFF] text-[18px] lg:text-[19px] leading-5 lg:leading-[30px] font-ProximaNovaRegular font-medium">
             Key Features:
           </h2>
-          <ol className="list-decimal list-inside text-[#ffffffb7] text-[16px] lg:text-[16px] leading-[30.6px] font-ProximaNovaRegular font-light pl-[10px]">
+          <ol className="list-decimal list-inside text-[#ffffffb7] text-[17px] lg:text-[18px] leading-[30.6px] font-ProximaNovaRegular font-light pl-[10px]">
             {product.longDescription.keyFeatures.map((feature, index) => (
               <li key={index}>{feature}</li>
             ))}
