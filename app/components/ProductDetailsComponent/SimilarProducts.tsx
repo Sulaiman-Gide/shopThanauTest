@@ -83,7 +83,7 @@ export default function SimilarProducts({ product }: DetailsTopProps) {
                     sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                     style={{ objectFit: "cover" }}
                     priority={index < 4} // Only prioritize first 4 images
-                    quality={75}
+                    quality={90}
                     className={`w-full transition-transform duration-500 group-hover:scale-105 ${
                       imageLoadingStates[product.id]
                         ? "opacity-0"
