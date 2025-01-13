@@ -197,7 +197,7 @@ export default function NavBar() {
         {/* Mobile Navigation */}
         <div className="flex sm:hidden items-center w-[40%] h-full">
           <Link
-            href="#"
+            href="/cart"
             className="flex items-center justify-center h-full w-[53%]"
             style={{
               backgroundColor: navItems[3].bgColor,

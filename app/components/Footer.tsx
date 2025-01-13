@@ -113,7 +113,7 @@ export default function Footer() {
           © {new Date().getFullYear()} shopthanau.com
         </h2>
         <Link
-          href="/legal"
+          href="#"
           className="block font-ProximaNovaRegular text-[14px] sm:text-[11px] lg:text-[16px] text-[#ffffff] font-[300px] leading-8 tracking-wide lg:mb-[5px] hover:opacity-70"
         >
           Legal

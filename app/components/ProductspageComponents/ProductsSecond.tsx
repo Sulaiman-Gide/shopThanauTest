@@ -12,20 +12,30 @@ export default function ProductsSecond({
   filteredProducts,
 }: ProductsSecondProps) {
   const setProducts = useProductStore((state) => state.setProducts);
-
-  // Add loading state for images
+  const [shuffledProducts, setShuffledProducts] = useState<Product[]>([]);
   const [imageLoadingStates, setImageLoadingStates] = useState<{
     [key: string]: boolean;
   }>({});
 
+  // Fisher-Yates shuffle algorithm
+  const shuffleArray = (array: Product[]) => {
+    const newArray = [...array];
+    for (let i = newArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+    return newArray;
+  };
+
   React.useEffect(() => {
     setProducts(filteredProducts);
+    setShuffledProducts(shuffleArray(filteredProducts));
   }, [filteredProducts, setProducts]);
 
   return (
     <div>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-5 w-full mt-[18px] mb-[28px] sm:mt-[35px] sm:mb-[45px] lg:mt-[40px] lg:mb-[60px] px-[22px] sm:px-[40px] lg:px-[90px] xl:px-[100px] animate-fade-in-up [animation-delay:200ms]">
-        {filteredProducts.map((product, index) => (
+        {shuffledProducts.map((product, index) => (
           <Link
             href={`/catalog/${encodeURIComponent(
               product.name.toLowerCase().replace(/\s+/g, "-")

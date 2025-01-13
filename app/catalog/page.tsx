@@ -485,6 +485,53 @@ const products: Product[] = [
       },
     ],
   },
+  {
+    id: 11,
+    name: "Box Cover",
+    slug: "Medium Raffia Box Cover",
+    description:
+      "The Round Rose bag is inspired by the Fulani women of northern Nigeria. It is a versatile, classy and durable.",
+    longDescription: {
+      about:
+        "The Box Cover showcases the finest traditions of Nigerian Raffia craftsmanship, handwoven by master artisans who bring generations of expertise to each piece. Our signature treatment process enhances the natural durability of premium Raffia while preserving its distinctive texture and sustainable properties. The thoughtfully designed interior combines practicality with elegance, featuring carefully placed compartments and premium finishing touches. Each bag undergoes comprehensive quality control to ensure it meets our high standards for both craftsmanship and functionality.",
+      keyFeatures: [
+        "100% handmade Raffia material",
+        "Durable wooden handle",
+        "Water-resistant treatment",
+        "Interior zip pocket",
+        "Adjustable leather strap",
+      ],
+    },
+    price: 6000,
+    images: {
+      main: "/image-18.svg",
+      vidoe: "/Vidoe.mp4",
+      gallery: ["/image-18.svg", "/image-18.svg"],
+    },
+    status: "new",
+    category: "Raffia",
+    variants: {
+      colors: ["Purple", "Brown", "Yellow"],
+      sizes: ["Small", "Medium", "Large"],
+    },
+    stock: 50,
+    reviews: [
+      {
+        id: 1,
+        user: "Liam N.",
+        rating: 5,
+        comment: "Beautiful craftsmanship and very durable!",
+        date: "2024-01-19",
+      },
+      {
+        id: 2,
+        user: "Thanau Test.",
+        rating: 1,
+        comment: "Beautiful craftsmanship and very durable!",
+        date: "2024-01-19",
+      },
+    ],
+  },
 ];
 
 export default function ProductsPage() {

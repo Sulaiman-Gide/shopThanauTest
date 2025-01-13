@@ -1,8 +1,13 @@
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useCartStore } from "@/app/store/cartStore";
 import type { CartItem } from "@/app/store/cartStore";
+import Lottie from "lottie-react";
+import emptyCartAnimation from "../../../public/empty-cart.json";
+
 export default function CartSecond() {
+  const router = useRouter();
   const { items, removeItem, updateQuantity } = useCartStore();
   const [showMaxStockMessage, setShowMaxStockMessage] = useState<string | null>(
     null
@@ -32,6 +37,36 @@ export default function CartSecond() {
   const calculateItemTotal = (price: number, quantity: number) => {
     return price * quantity;
   };
+
+  if (items.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[80vh] sm:min-h-[70vh] lg:min-h-[80vh] w-full px-4 sm:px-6 md:px-8 mt-[70px] sm:mt-[95px] lg:mt-[110px] mb-[10px] sm:mb-[30px] lg:mb-[50px]">
+        <div className="w-full max-w-[250px] sm:max-w-[300px] md:max-w-[350px] relative mb-2 sm:mb-3">
+          <Lottie
+            animationData={emptyCartAnimation}
+            loop={true}
+            className="w-full h-auto"
+          />
+        </div>
+        <h2 className="text-[#202020] text-[18px] sm:text-[20px] lg:text-[25px] mb-2.5 sm:mb-3 text-center font-ProximaNovaBold">
+          Your Cart is Empty
+        </h2>
+        <p className="text-[#4E5075] text-sm sm:text-base lg:text-[17px] mb-6 sm:mb-6 text-center max-w-[340px] sm:max-w-[400px] font-ProximaNovaRegular">
+          Looks like you haven&apos;t added anything to your cart yet. Start
+          shopping to add items to your cart.
+        </p>
+        <button
+          onClick={() => router.push("/catalog")}
+          className="bg-[#202020] text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-sm 
+                   hover:bg-[#303030] active:bg-[#404040] transition-all duration-300 
+                   text-sm sm:text-base font-ProximaNovaRegular
+                   transform hover:scale-[1.02] active:scale-[0.98]"
+        >
+          Continue Shopping
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col lg:flex-row justify-between items-start gap-[24px] lg:gap-[35px] mt-[10px] mb-[25px] sm:mt-[24px] sm:mb-[40px] lg:mt-[24px] lg:mb-[80px] px-[22px] sm:px-[40px] lg:px-[90px] xl:px-[110px]">
@@ -154,19 +189,19 @@ export default function CartSecond() {
       </div>
 
       {/* Mobile View */}
-      <div className="sm:hidden w-full mt-1">
-        <div className="space-y-4">
+      <div className="sm:hidden w-full -mt-2">
+        <div className="space-y-0">
           {items.map((item) => {
             const itemKey = `${item.product.id}-${item.selectedColor}-${item.selectedSize}`;
             return (
               <div
                 key={itemKey}
-                className="bg-white border border-[#20202015] overflow-hidden"
+                className="bg-white border-b border-[#20202015] overflow-hidden"
               >
                 {/* Product Details Section */}
-                <div className="p-4 pb-3">
+                <div className="py-[24px] px-1">
                   <div className="flex gap-3">
-                    <div className="w-[85px] h-[100px] shrink-0 relative overflow-hidden border border-[#20202010]">
+                    <div className="w-[85px] min-h-[100px] shrink-0 relative overflow-hidden">
                       <Image
                         src={item.product.images.main}
                         alt={item.product.name}
@@ -176,11 +211,20 @@ export default function CartSecond() {
                       />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="flex flex-col h-full justify-between">
+                      <div className="flex flex-col justify-between gap-0">
                         <div>
-                          <h3 className="font-ProximaNovaBold text-[15px] leading-[1.3] text-[#202020] mb-2 line-clamp-2">
-                            {item.product.name}
-                          </h3>
+                          <div className="flex justify-between items-start mb-1">
+                            <h3 className="font-ProximaNovaRegular font-medium text-[15px] text-[#000] line-clamp-2">
+                              {item.product.name}
+                            </h3>
+                            <p className="text-[15px] font-ProximaNovaBold text-[#202020] line-clamp-2">
+                              ₦
+                              {calculateItemTotal(
+                                item.product.price,
+                                item.quantity
+                              ).toLocaleString()}
+                            </p>
+                          </div>
                           <div className="space-y-1">
                             <p className="text-[13px] text-[#4E5075]">
                               Color:{" "}
@@ -196,71 +240,66 @@ export default function CartSecond() {
                             </p>
                           </div>
                         </div>
-                        <p className="text-[16px] font-ProximaNovaBold text-[#202020] mt-2">
-                          ₦
-                          {calculateItemTotal(
-                            item.product.price,
-                            item.quantity
-                          ).toLocaleString()}
-                        </p>
+                        {/* Controls Section */}
+                        <div>
+                          <div className="flex items-center justify-between mt-1">
+                            <div className="flex items-center gap-2 bg-white">
+                              <button
+                                onClick={() =>
+                                  handleQuantityChange(
+                                    item,
+                                    Math.max(1, item.quantity - 1)
+                                  )
+                                }
+                                className="w-[28px] h-[23px] border border-[#202020] flex items-center justify-center text-[15px] select-none disabled:opacity-50 active:bg-[#20202008]"
+                                disabled={item.quantity <= 1}
+                              >
+                                -
+                              </button>
+                              <span className="w-[42px] text-center text-[14px] text-[#202020] font-medium select-none">
+                                {item.quantity}
+                              </span>
+                              <button
+                                onClick={() =>
+                                  handleQuantityChange(
+                                    item,
+                                    Math.min(
+                                      item.product.stock,
+                                      item.quantity + 1
+                                    )
+                                  )
+                                }
+                                className="w-[28px] h-[23px] border border-[#202020] flex items-center justify-center text-[15px] select-none disabled:opacity-50 active:bg-[#20202008]"
+                                disabled={item.quantity >= item.product.stock}
+                              >
+                                +
+                              </button>
+                            </div>
+                            <button
+                              onClick={() => removeItem(item)}
+                              className="w-[36px] h-[36px] flex items-center justify-center rounded-full hover:bg-[#20202008] active:bg-[#20202015]"
+                            >
+                              <div className="w-[20px] h-[20px] relative">
+                                <Image
+                                  src="/trash.svg"
+                                  alt="Remove"
+                                  fill={true}
+                                  sizes="20px"
+                                  className="object-contain"
+                                />
+                              </div>
+                            </button>
+                          </div>
+                          {item.quantity >= item.product.stock &&
+                            showMaxStockMessage === itemKey && (
+                              <p className="text-[12px] text-red-500 mt-1 select-none">
+                                Max stock reached
+                              </p>
+                            )}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-
-                {/* Controls Section */}
-                <div className="px-4 pt-1 pb-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center h-[32px] border border-[#202020] bg-white">
-                      <button
-                        onClick={() =>
-                          handleQuantityChange(
-                            item,
-                            Math.max(1, item.quantity - 1)
-                          )
-                        }
-                        className="w-[38px] h-full flex items-center justify-center text-[15px] select-none disabled:opacity-50 active:bg-[#20202008]"
-                        disabled={item.quantity <= 1}
-                      >
-                        -
-                      </button>
-                      <span className="w-[42px] text-center text-[14px] text-[#202020] font-medium select-none">
-                        {item.quantity}
-                      </span>
-                      <button
-                        onClick={() =>
-                          handleQuantityChange(
-                            item,
-                            Math.min(item.product.stock, item.quantity + 1)
-                          )
-                        }
-                        className="w-[36px] h-full flex items-center justify-center text-[15px] select-none disabled:opacity-50 active:bg-[#20202008]"
-                        disabled={item.quantity >= item.product.stock}
-                      >
-                        +
-                      </button>
-                    </div>
-                    <button
-                      onClick={() => removeItem(item)}
-                      className="w-[36px] h-[36px] flex items-center justify-center rounded-full hover:bg-[#20202008] active:bg-[#20202015]"
-                    >
-                      <div className="w-[20px] h-[20px] relative">
-                        <Image
-                          src="/trash.svg"
-                          alt="Remove"
-                          fill={true}
-                          sizes="20px"
-                          className="object-contain opacity-50"
-                        />
-                      </div>
-                    </button>
-                  </div>
-                  {item.quantity >= item.product.stock &&
-                    showMaxStockMessage === itemKey && (
-                      <p className="text-[12px] text-red-500 mt-2 select-none">
-                        Max stock reached
-                      </p>
-                    )}
                 </div>
               </div>
             );
@@ -327,7 +366,10 @@ export default function CartSecond() {
                 .toLocaleString()}
             </span>
           </div>
-          <button className="w-full text-center py-[10px] px-[25px] bg-white  text-[#202020] text-[15px] font-ProximaNovaRegular font-light hover:bg-[#e0e0e0] transition-colors">
+          <button
+            onClick={() => router.push("/checkout")}
+            className="w-full text-center py-[10px] px-[25px] bg-white  text-[#202020] text-[15px] font-ProximaNovaRegular font-light hover:bg-[#e0e0e0] transition-colors"
+          >
             Proceed to checkout
           </button>
         </div>
