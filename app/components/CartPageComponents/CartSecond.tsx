@@ -3,8 +3,11 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useCartStore } from "@/app/store/cartStore";
 import type { CartItem } from "@/app/store/cartStore";
-import Lottie from "lottie-react";
-import emptyCartAnimation from "../../../public/empty-cart.json";
+import dynamic from "next/dynamic";
+
+const EmptyCartAnimation = dynamic(() => import("./EmptyCartAnimation"), {
+  ssr: false,
+});
 
 export default function CartSecond() {
   const router = useRouter();
@@ -41,13 +44,7 @@ export default function CartSecond() {
   if (items.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[80vh] sm:min-h-[70vh] lg:min-h-[80vh] w-full px-4 sm:px-6 md:px-8 mt-[70px] sm:mt-[95px] lg:mt-[110px] mb-[10px] sm:mb-[30px] lg:mb-[50px]">
-        <div className="w-full max-w-[250px] sm:max-w-[300px] md:max-w-[350px] relative mb-2 sm:mb-3">
-          <Lottie
-            animationData={emptyCartAnimation}
-            loop={true}
-            className="w-full h-auto"
-          />
-        </div>
+        <EmptyCartAnimation />
         <h2 className="text-[#202020] text-[18px] sm:text-[20px] lg:text-[25px] mb-2.5 sm:mb-3 text-center font-ProximaNovaBold">
           Your Cart is Empty
         </h2>
